@@ -35,6 +35,10 @@ render hashtags identically.
 
 Scaffolded with `npm create wcb@latest`.
 
+## Background
+
+This is a web component used at Ayo's [Threads](https://ayo.ayco.io/threads) page.
+
 ## Commands
 
 - `npm run dev` — start the Vite dev server on the `index.html` demo page
