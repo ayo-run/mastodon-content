@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>#opensource — mastodon-content demo</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <script type="module" src="../../src/mastodon-content.ts"></script>
+    <style>
+      main {
+        padding: 1em;
+        max-width: 32em;
+        margin-inline: auto;
+      }
+      .tag-bar {
+        display: flex;
+        gap: 0.5em;
+        list-style: none;
+        padding: 0;
+      }
+      .pill {
+        border: 1px solid;
+        border-radius: 999px;
+        padding: 0.1em 0.75em;
+        text-decoration: none;
+      }
+      mastodon-content {
+        display: block;
+      }
+      article > mastodon-content > p:first-child {
+        margin-top: 0;
+      }
+      article > mastodon-content > p:last-child {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p><a href="/">&larr; Back to demo</a></p>
+        <h1>#opensource</h1>
+        <p>Every status tagged <code>#opensource</code>, newest first.</p>
+        <hr />
+      </header>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Just shipped a new release, thanks for all the feedback along the
+            way!
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
+        </mastodon-content>
+      </article>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            MIT-licensed, no CLA, PRs welcome. If you find the source
+            frustrating to read that's a bug — open an issue.
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
+        </mastodon-content>
+      </article>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Maintaining a small library is mostly triage: which issues are
+            real, which are config problems in disguise, and which are the
+            same request for the third time this year.
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a> <a href="https://mastodon.social/tags/maintainers" class="mention hashtag" rel="tag">#<span>maintainers</span></a></p>
+        </mastodon-content>
+      </article>
+    </main>
+  </body>
+</html>

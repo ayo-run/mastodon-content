@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>#webcomponents — mastodon-content demo</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <script type="module" src="../../src/mastodon-content.ts"></script>
+    <style>
+      main {
+        padding: 1em;
+        max-width: 32em;
+        margin-inline: auto;
+      }
+      .tag-bar {
+        display: flex;
+        gap: 0.5em;
+        list-style: none;
+        padding: 0;
+      }
+      .pill {
+        border: 1px solid;
+        border-radius: 999px;
+        padding: 0.1em 0.75em;
+        text-decoration: none;
+      }
+      mastodon-content {
+        display: block;
+      }
+      article > mastodon-content > p:first-child {
+        margin-top: 0;
+      }
+      article > mastodon-content > p:last-child {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p><a href="/">&larr; Back to demo</a></p>
+        <h1>#webcomponents</h1>
+        <p>Every status tagged <code>#webcomponents</code>, newest first.</p>
+        <hr />
+      </header>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Just shipped a new release, thanks for all the feedback along the
+            way!
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
+        </mastodon-content>
+      </article>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Custom elements + no build step = a component you can drop into
+            any page with a single &lt;script&gt; tag. Still one of my
+            favorite things about the platform.
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a></p>
+        </mastodon-content>
+      </article>
+
+      <article>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Today I learned that light-DOM children survive
+            <code>connectedCallback</code> just fine as long as your
+            component doesn't clobber them with its own render — enhance,
+            don't replace.
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/html" class="mention hashtag" rel="tag">#<span>html</span></a></p>
+        </mastodon-content>
+      </article>
+    </main>
+  </body>
+</html>
