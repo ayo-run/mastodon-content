@@ -7,8 +7,14 @@
 
     <!-- meta -->
     <meta property="og:title" content="mastodon-content web component" />
-    <meta property="og:description" content="A mastodon-content web component" />
-    <meta name="description" content="A mastodon-content web component" />
+    <meta
+      property="og:description"
+      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars."
+    />
+    <meta
+      name="description"
+      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars."
+    />
 
     <link
       rel="stylesheet"
@@ -26,9 +32,19 @@
       }
       main {
         padding: 1em;
+        max-width: 32em;
       }
-      mastodon-content {
-        font-family: 'Courier New', Courier, monospace;
+      .tag-bar {
+        display: flex;
+        gap: 0.5em;
+        list-style: none;
+        padding: 0;
+      }
+      .pill {
+        border: 1px solid;
+        border-radius: 999px;
+        padding: 0.1em 0.75em;
+        text-decoration: none;
       }
     </style>
   </head>
@@ -39,8 +55,30 @@
     </header>
     <main>
       <section>
-        <p>A mastodon-content web component</p>
-        <mastodon-content label="Hello, Beautiful!"></mastodon-content>
+        <p>
+          Given the <code>content</code> HTML of a Mastodon status as its own
+          light-DOM children, this component rewrites hashtag links to point
+          at <code>tag-url</code> instead of the origin server, and marks a
+          hashtag-only line as a <code>tag-bar</code> of <code>pill</code>s.
+        </p>
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Just shipped a new release, thanks for all the feedback along the
+            way!
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
+        </mastodon-content>
+      </section>
+      <section>
+        <p>
+          Without <code>tag-url</code>, hashtags stay pointed at the server's
+          own tag page instead of breaking:
+        </p>
+        <mastodon-content server="https://mastodon.social">
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a></p>
+        </mastodon-content>
       </section>
       <section>
         <p>
