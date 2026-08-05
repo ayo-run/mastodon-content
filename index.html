@@ -46,6 +46,13 @@
         padding: 0.1em 0.75em;
         text-decoration: none;
       }
+
+      mastodon-content {
+        display: block;
+        border: 1px solid gray;
+        border-radius: 1em;
+        padding: 0.5em 1em 0;
+      }
     </style>
   </head>
   <body>
@@ -59,7 +66,7 @@
           Given the <code>content</code> HTML of a Mastodon status as its own
           light-DOM children, this component rewrites hashtag links to point
           at <code>tag-url</code> instead of the origin server, and marks a
-          hashtag-only line as a <code>tag-bar</code> of <code>pill</code>s.
+          hashtag-only bottom line as a <code>tag-bar</code> of <code>pill</code>s.
         </p>
         <mastodon-content server="https://mastodon.social" tag-url="/tags/">
           <p>
@@ -76,6 +83,8 @@
           own tag page instead of breaking:
         </p>
         <mastodon-content server="https://mastodon.social">
+          <p>Hooray! And
+            <a href="https://mastodon.social/tags/tags" class="mention hashtag" rel="tag">#<span>tags</span></a> not in the last row will not be pills.</p>
           <!-- prettier-ignore -->
           <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a></p>
         </mastodon-content>
