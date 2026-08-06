@@ -3,15 +3,18 @@
 A custom element, built on [web-component-base](https://webcomponent.io),
 that progressively enhances the `content` HTML of a Mastodon status:
 
-- Rewrites hashtag links — `<a class="hashtag" href="{server}/tags/{tag}">`,
-  the markup Mastodon's status renderer emits — to point at a `tag-url` of
-  your choosing instead of the origin server. `tag-url` is optional: leave it
-  out and the link stays on the server's own tag page, so hashtags still open
-  somewhere useful without any local tag route configured.
-- Marks a line consisting only of hashtag links (Mastodon's convention for a
-  trailing "tag list" on a post) with a `tag-bar` class, and each of its
+- Rewrites hashtag links so they would open in a local URL. Tag links
+  in the content HTML of a Mastodon status will point at a `tag-url` of
+  your choosing instead of the origin server. This `tag-url` attribute is optional:
+  leave it out and the link stays on the origin server's own tag page
+- Wraps a line consisting only of hashtag links (Mastodon's convention for a
+  trailing "tag list" botto row on a post) with a `tag-bar` class, and each of its
   links with a `pill` class, so they can be styled as pills instead of inline
   text links.
+
+See it in action:
+- [Web Component demo](https://mastodon-content.webcomponent.io)
+- [Ayo's Threads](https://ayo.ayco.io/threads)
 
 ```html
 <!-- rewrite hashtags to a local route -->

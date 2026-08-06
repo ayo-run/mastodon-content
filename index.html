@@ -9,11 +9,11 @@
     <meta property="og:title" content="mastodon-content web component" />
     <meta
       property="og:description"
-      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars."
+      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as hashtag bars."
     />
     <meta
       name="description"
-      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars."
+      content="Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as hashtag bars."
     />
 
     <link
@@ -47,11 +47,12 @@
         text-decoration: none;
       }
 
-      mastodon-content {
+      mastodon-content, .unenhanced {
         display: block;
         border: 1px solid gray;
         border-radius: 1em;
         padding: 0.5em 1em 0;
+        margin-bottom: 1em;
       }
     </style>
   </head>
@@ -68,20 +69,41 @@
     <main>
       <section>
         <p>
-          Given the <code>content</code> HTML of a Mastodon status as its own
-          light-DOM children, this component rewrites hashtag links to point
-          at a local <code>tag-url</code> instead of the origin server, and marks a
-          hashtag-only bottom line as a <code>tag-bar</code> of <code>pill</code>s.
+          Given the <a href="https://docs.joinmastodon.org/entities/Status/#content">content HTML of a Mastodon status</a>
+          wrapped as its own children, this custom element rewrites hashtag links to point at a local route
+          instead of the origin server, and wraps the hashtag-only bottom row as a <code>tag-bar</code> of <code>pill</code>s.
         </p>
-
         <p>
-          It is currently unstyled, and adds classes and wrappers you can style yourself.
+          It is currently unstyled and adds classes so you can style yourself.
         </p>
-
         <p>
           See it in action at <a href="https://ayo.ayco.io/threads" target="_blank">Ayo's Threads</a> page.
         </p>
+      </section>
 
+      <section>
+        <h2>Examples</h2>
+
+        <p>Say we want to enhance the following content from a Mastodon status:</p>
+
+        <div class="unenhanced">
+          <p>
+            Just shipped a new release, thanks for all the feedback along the
+            way!
+          </p>
+          <!-- prettier-ignore -->
+          <p>
+            <a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a>
+            <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a>
+          </p>
+        </div>
+
+
+        <p>By setting the <code>tag-url="/tags/"</code> attribute of the <code>&lt;mastodon-content&gt;</code> custom element, it rewrites all the hashtag links to go to a local <code>/tags/</code> route.</p>
+
+        <p>Go ahead, try clicking the links.</p>
+
+        <p>It also wraps the bottom row with a class <code>tag-bar</code> so they can be styled with CSS.</p>
 
         <mastodon-content server="https://mastodon.social" tag-url="/tags/">
           <p>
@@ -91,26 +113,47 @@
           <!-- prettier-ignore -->
           <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
         </mastodon-content>
-      </section>
-      <section>
+
         <p>
           Without <code>tag-url</code>, hashtags stay pointed at the server's
-          own tag page instead of breaking:
+          own hashtag page instead of breaking:
         </p>
+
         <mastodon-content server="https://mastodon.social">
-          <p>Hooray! And
-            <a href="https://mastodon.social/tags/tags" class="mention hashtag" rel="tag">#<span>tags</span></a> not in the last row will not be pills.</p>
+          <p>Hooray! The hashtag links here will go to the origin server.</p>
           <!-- prettier-ignore -->
           <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a></p>
         </mastodon-content>
+
+        <p>Hashtags in the body (i.e., not in the hashtags-only bottom row) will not be wrapped as a <code>pill</code>. See the <code>#thanks</code> hashtog in the following example.</p>
+
+        <mastodon-content server="https://mastodon.social" tag-url="/tags/">
+          <p>
+            Just shipped a new release, thanks for all the feedback along the way!
+            Really, <a href="https://mastodon.social/tags/thanks" class="mention hashtag" rel="tag">#<span>thanks</span></a> a lot!
+          </p>
+          <!-- prettier-ignore -->
+          <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a> <a href="https://mastodon.social/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a></p>
+        </mastodon-content>
       </section>
+
       <section>
-        <p>
-          Generate <code>custom-elements.json</code> with
-          <code>npm run analyze</code> — more on the
-          <a href="https://webcomponent.io/cem-plugin/">CEM plugin guide</a>
-        </p>
+        <h2>How it works</h2>
+
+        <ul>
+          <li>Rewrites hashtag links so they would open in a local URL. Hashtag links
+            in the content HTML of a Mastodon status will point at a local route of
+            your choosing which you provide as value to an optional <code>tag-url</code> attribute. Leave this attribute out and the hashtag links stay on the origin server's own hashtag page
+          </li>
+
+          <li>Wraps a line consisting only of hashtag links (Mastodon's convention for a
+            trailing "tag list" botto row on a post) with a <code>tag-bar</code> class, and each of its
+            links with a <code>pill</code> class, so they can be styled as pills instead of inline
+          text links.
+          </li>
+        </ul>
       </section>
+
     </main>
     <footer>
       <hr />
