@@ -4,6 +4,11 @@
   "type": "module",
   "description": "Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars",
   "license": "MIT",
+  "author": "Ayo Ayco",
+  "repository: " {
+    "type": "git",
+    "url": "git+https://git.ayo.run/ayo/web-component.git"
+  },
   "homepage": "https://webcomponent.io",
   "customElements": "custom-elements.json",
   "module": "./dist/mastodon-content.js",
