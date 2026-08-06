@@ -1,5 +1,5 @@
 {
-  "name": "mastodon-content",
+  "name": "@ayo-run/mastodon-content",
   "version": "1.0.0",
   "type": "module",
   "description": "Progressively enhances a Mastodon status's content HTML: rewrites hashtag links and marks hashtag-only lines as tag bars",
