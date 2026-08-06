@@ -101,9 +101,9 @@
 
         <p>By setting the <code>tag-url="/tags/"</code> attribute of the <code>&lt;mastodon-content&gt;</code> custom element, it rewrites all the hashtag links to go to a local <code>/tags/</code> route.</p>
 
-        <p>Go ahead, try clicking the links.</p>
+        <p>The bottom row hashtags are also wrapped as a <code>tag-bar</code> so they can be styled to appear as <code>pills</code> or however you want.</p>
 
-        <p>It also wraps the bottom row with a class <code>tag-bar</code> so they can be styled with CSS.</p>
+        <p>Go ahead, try clicking the hashtag links below. They will now open in a demo "tags" page.</p>
 
         <mastodon-content server="https://mastodon.social" tag-url="/tags/">
           <p>
@@ -116,7 +116,7 @@
 
         <p>
           Without <code>tag-url</code>, hashtags stay pointed at the server's
-          own hashtag page instead of breaking:
+          own "tags" page. Try clicking the hashtag links below to see that it opens at mastodon.social:
         </p>
 
         <mastodon-content server="https://mastodon.social">
@@ -125,7 +125,7 @@
           <p><a href="https://mastodon.social/tags/webcomponents" class="mention hashtag" rel="tag">#<span>webcomponents</span></a></p>
         </mastodon-content>
 
-        <p>Hashtags in the body (i.e., not in the hashtags-only bottom row) will not be wrapped as a <code>pill</code>. See the <code>#thanks</code> hashtag in the following example.</p>
+        <p>Hashtags in the body (i.e., not in the hashtags-only bottom row) will not be wrapped as a <code>pill</code>. See the <code>#thanks</code> hashtag below.</p>
 
         <mastodon-content server="https://mastodon.social" tag-url="/tags/">
           <p>
