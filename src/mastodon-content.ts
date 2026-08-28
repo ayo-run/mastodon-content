@@ -10,30 +10,8 @@ type MastodonContentProps = {
 
 /**
  * Enhances a Mastodon status's `content` HTML, given as this element's own
- * light-DOM children (server-rendered, or otherwise already in the DOM):
- *
- * - Rewrites hashtag links — `<a class="hashtag" href="{server}/tags/{tag}">`,
- *   the markup Mastodon's status renderer emits — to point at `tagUrl`
- *   instead of the origin server. When `tagUrl` isn't given, the link is
- *   left pointing at the server's own tag page (`{server}/tags/{tag}`), so
- *   the tag opens in the server's own UI rather than breaking.
- * - Marks a line that consists only of hashtag links (Mastodon's convention
- *   for a trailing "tag list" on a post) with a `tag-bar` class on the line
- *   and a `pill` class on each link, so they can be styled as pills instead
- *   of inline text links.
- *
- * This assumes Mastodon's own hashtag markup convention. Other ActivityPub
- * server software (Pleroma, Akkoma, GoToSocial, ...) is not guaranteed to
- * render hashtags identically. The tag-bar check is also whitespace-strict —
- * it only tolerates a single `" "` text node between links, matching
- * Mastodon's own (unindented) HTML — so hand-authored or pretty-printed
- * markup with newlines/indentation between the links won't be recognized.
- *
- * There is no template here — this component enhances markup it's given
- * rather than owning its own render, so `render()` is overridden as a no-op.
- * Without that, wcb's default (empty) template would clear these
- * already-enhanced children right after `onInit()` runs.
- * @see https://webcomponent.io/template-vs-render/
+ * light-DOM children (server-rendered, or otherwise already in the DOM).
+ * @see https://mastodon-content.webcomponent.io
  */
 export class MastodonContent extends WebComponent<MastodonContentProps> {
   static props: MastodonContentProps = {
@@ -41,6 +19,7 @@ export class MastodonContent extends WebComponent<MastodonContentProps> {
     tagUrl: '',
   }
 
+  // override render() so the children are not wiped
   render() {}
 
   onInit() {
