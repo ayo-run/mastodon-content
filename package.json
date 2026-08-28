@@ -33,13 +33,15 @@
     "build": "vite build",
     "build:lib": "vite build --config vite-lib.config.ts",
     "analyze": "cem analyze",
-    "prepack": "npm run build:lib && npm run analyze"
+    "prepack": "npm run build:lib && npm run analyze",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@types/node": "^26.1.1",
     "vite": "^8.1.5",
-    "vite-plugin-dts": "^5.0.3"
+    "vite-plugin-dts": "^5.0.3",
+    "husky": "^9.1.7"
   },
   "peerDependencies": {
     "web-component-base": "^6.1.5"
